@@ -3,31 +3,20 @@ function caesar(string, shift) {
   const uppercaseArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   let stringArray = string.split('');
 
-  function findNewIndexes(charArray, shift) {
-    let arrayByCaesarIndex = [];
-    charArray.forEach((character) => {
-      let caesarIndex;
-      if (lowercaseArray.includes(character)) {
-        caesarIndex = lowercaseArray.indexOf(character) + shift;
-      } else if (uppercaseArray.includes(character)) {
-        caesarIndex = uppercaseArray.indexOf(character) + shift;
-      }
-      arrayByCaesarIndex.push(caesarIndex);
-    })
-
-    return arrayByCaesarIndex;
-  }
-
-  function insertNewCharacters(indexArray) {
-    let newArray = indexArray.map((newCaesarIndex) => {
-      return lowercaseArray[newCaesarIndex];
-    });
-    return newArray.join('')
-  }
-
-  let test = findNewIndexes(stringArray, shift);
-  return insertNewCharacters(test);
-
+  let caesarString = stringArray.map((character) => {
+    let caesarCharacter;
+    if (lowercaseArray.includes(character)) {
+      caesarIndex = lowercaseArray.indexOf(character) + shift;
+      caesarCharacter = lowercaseArray[caesarIndex];
+    } else if (uppercaseArray.includes(character)) {
+      caesarIndex = uppercaseArray.indexOf(character) + shift;
+      caesarCharacter = uppercaseArray[caesarIndex];
+    } else {
+      caesarCharacter = character;
+    }
+    return caesarCharacter;
+  })
+  return caesarString.join('')
 }
 
 module.exports = caesar
